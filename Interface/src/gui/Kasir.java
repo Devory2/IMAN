@@ -27,45 +27,71 @@ public class Kasir extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        atas = new javax.swing.JPanel();
+        judul = new javax.swing.JLabel();
+        txtgrandtotal2 = new javax.swing.JTextField();
+        tengah = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        tabel = new javax.swing.JTable();
+        search = new javax.swing.JLabel();
+        neww = new javax.swing.JLabel();
+        save = new javax.swing.JLabel();
+        delete = new javax.swing.JLabel();
+        cancel = new javax.swing.JLabel();
+        kodebarang = new javax.swing.JLabel();
+        txtkodebarang = new javax.swing.JTextField();
+        namabarang = new javax.swing.JLabel();
+        txtnamabarang = new javax.swing.JTextField();
+        jumlahbarang = new javax.swing.JLabel();
+        txtjumlahbarang = new javax.swing.JTextField();
+        bawah = new javax.swing.JPanel();
+        nofaktur = new javax.swing.JLabel();
+        txtnofaktur = new javax.swing.JTextField();
+        idpelanggan = new javax.swing.JLabel();
+        txtidpelanggan = new javax.swing.JTextField();
+        namapelanggan = new javax.swing.JLabel();
+        txtnamapelanggan = new javax.swing.JTextField();
+        subtotal = new javax.swing.JLabel();
+        txtsubtotal = new javax.swing.JTextField();
+        diskon = new javax.swing.JLabel();
+        txtdiskon = new javax.swing.JTextField();
+        grandtotal = new javax.swing.JLabel();
+        txtgrandtotal1 = new javax.swing.JTextField();
+        bayar = new javax.swing.JLabel();
+        txtbayar = new javax.swing.JTextField();
+        kembali = new javax.swing.JLabel();
+        txtkembali = new javax.swing.JTextField();
+        btnsimpan = new javax.swing.JButton();
+        simpan = new javax.swing.JLabel();
+        btncetak = new javax.swing.JButton();
+        cetak = new javax.swing.JLabel();
+        btnreset = new javax.swing.JButton();
+        reset = new javax.swing.JLabel();
+        btnkembali = new javax.swing.JButton();
+        kembalii = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        atas.setBackground(new java.awt.Color(0, 0, 102));
+        atas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setEnabled(false);
-        jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 490, 80));
+        judul.setFont(new java.awt.Font("GeoSlab703 MdCn BT", 1, 60)); // NOI18N
+        judul.setForeground(new java.awt.Color(255, 255, 255));
+        judul.setText("Toko Bu Kasan");
+        atas.add(judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel2.setForeground(new java.awt.Color(153, 204, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        txtgrandtotal2.setEditable(false);
+        txtgrandtotal2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        txtgrandtotal2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtgrandtotal2.setText("115000");
+        txtgrandtotal2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        atas.add(txtgrandtotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 310, 60));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tengah.setBackground(new java.awt.Color(255, 255, 255));
+        tengah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setForeground(new java.awt.Color(153, 204, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabel.setForeground(new java.awt.Color(0, 0, 102));
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -87,162 +113,245 @@ public class Kasir extends javax.swing.JFrame {
                 "Kode Barang", "Nama barang", "Harga Barang", "Jumlah Barang", "Total"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(153, 204, 255));
-        jTable1.setRowHeight(20);
-        jScrollPane1.setViewportView(jTable1);
+        tabel.setGridColor(new java.awt.Color(153, 204, 255));
+        tabel.setRowHeight(20);
+        jScrollPane1.setViewportView(tabel);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 340));
+        tengah.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 330));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_cancel_40px.png"))); // NOI18N
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, 40, 40));
+        search.setForeground(new java.awt.Color(51, 0, 102));
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_search_40px.png"))); // NOI18N
+        search.setText("Cari");
+        search.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tengah.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 90, 50));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 40, 40));
+        neww.setForeground(new java.awt.Color(51, 0, 102));
+        neww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
+        neww.setText("Baru");
+        neww.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        neww.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tengah.add(neww, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, 90, 50));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, 40, 40));
+        save.setForeground(new java.awt.Color(51, 0, 102));
+        save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
+        save.setText("Simpan");
+        save.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tengah.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 350, 110, 50));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_multiply_40px.png"))); // NOI18N
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 350, 40, 40));
+        delete.setForeground(new java.awt.Color(51, 0, 102));
+        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_multiply_40px.png"))); // NOI18N
+        delete.setText("Hapus");
+        delete.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tengah.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 350, 100, 50));
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel2.setText("Kode Barang");
+        cancel.setForeground(new java.awt.Color(51, 0, 102));
+        cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_cancel_40px.png"))); // NOI18N
+        cancel.setText("Batal");
+        cancel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        cancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tengah.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 350, 90, 50));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
-        jTextField1.setOpaque(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        kodebarang.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        kodebarang.setForeground(new java.awt.Color(0, 0, 102));
+        kodebarang.setText("Kode Barang");
+        tengah.add(kodebarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel3.setText("Nama Barang");
+        txtkodebarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtkodebarang.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtkodebarang.setText("ES021");
+        txtkodebarang.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        tengah.add(txtkodebarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 190, 30));
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        namabarang.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        namabarang.setForeground(new java.awt.Color(0, 0, 102));
+        namabarang.setText("Nama Barang");
+        tengah.add(namabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
+        txtnamabarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtnamabarang.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtnamabarang.setText("Milo");
+        txtnamabarang.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        tengah.add(txtnamabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 190, 30));
 
-        jLabel4.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel4.setText("Baru");
+        jumlahbarang.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jumlahbarang.setForeground(new java.awt.Color(0, 0, 102));
+        jumlahbarang.setText("Jumlah Barang");
+        tengah.add(jumlahbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel5.setText("Jumlah Barang");
+        txtjumlahbarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtjumlahbarang.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtjumlahbarang.setText("12");
+        txtjumlahbarang.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        tengah.add(txtjumlahbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 130, 30));
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel6.setText("Simpan");
+        bawah.setBackground(new java.awt.Color(153, 204, 255));
+        bawah.setForeground(new java.awt.Color(153, 204, 255));
+        bawah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel7.setText("Hapus");
+        nofaktur.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        nofaktur.setForeground(new java.awt.Color(0, 0, 102));
+        nofaktur.setText("No. Faktur");
+        bawah.add(nofaktur, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Ubuntu Mono", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("Batal");
+        txtnofaktur.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtnofaktur.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtnofaktur.setText("3232");
+        txtnofaktur.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtnofaktur, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 190, 30));
+
+        idpelanggan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        idpelanggan.setForeground(new java.awt.Color(0, 0, 102));
+        idpelanggan.setText("ID Pelanggan");
+        bawah.add(idpelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        txtidpelanggan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtidpelanggan.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtidpelanggan.setText("09382");
+        txtidpelanggan.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtidpelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 190, 30));
+
+        namapelanggan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        namapelanggan.setForeground(new java.awt.Color(0, 0, 102));
+        namapelanggan.setText("Nama Pelanggan");
+        bawah.add(namapelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        txtnamapelanggan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtnamapelanggan.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtnamapelanggan.setText("Enrique");
+        txtnamapelanggan.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtnamapelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 190, 30));
+
+        subtotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        subtotal.setForeground(new java.awt.Color(0, 0, 102));
+        subtotal.setText("Sub Total");
+        bawah.add(subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+
+        txtsubtotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtsubtotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtsubtotal.setText("115000");
+        txtsubtotal.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtsubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 190, 30));
+
+        diskon.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        diskon.setForeground(new java.awt.Color(0, 0, 102));
+        diskon.setText("Diskon (%)");
+        bawah.add(diskon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
+
+        txtdiskon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtdiskon.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtdiskon.setText("2%");
+        txtdiskon.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtdiskon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 190, 30));
+
+        grandtotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        grandtotal.setForeground(new java.awt.Color(0, 0, 102));
+        grandtotal.setText("Grand Total");
+        bawah.add(grandtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+
+        txtgrandtotal1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtgrandtotal1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtgrandtotal1.setText("115000");
+        txtgrandtotal1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtgrandtotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 190, 30));
+
+        bayar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        bayar.setForeground(new java.awt.Color(0, 0, 102));
+        bayar.setText("Bayar");
+        bawah.add(bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+
+        txtbayar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtbayar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtbayar.setText("120000");
+        txtbayar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtbayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 130, 30));
+
+        kembali.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        kembali.setForeground(new java.awt.Color(0, 0, 102));
+        kembali.setText("Kembali");
+        bawah.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
+
+        txtkembali.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtkembali.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtkembali.setText("5000");
+        txtkembali.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        bawah.add(txtkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 130, 30));
+
+        btnsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_as_60px.png"))); // NOI18N
+        btnsimpan.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 102), null));
+        btnsimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnsimpan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bawah.add(btnsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 90, 70));
+
+        simpan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        simpan.setForeground(new java.awt.Color(0, 0, 102));
+        simpan.setText("Simpan");
+        bawah.add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, -1, -1));
+
+        btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_print_60px.png"))); // NOI18N
+        btncetak.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 102), null));
+        btncetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncetak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bawah.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 70));
+
+        cetak.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        cetak.setForeground(new java.awt.Color(0, 0, 102));
+        cetak.setText("Cetak");
+        bawah.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, -1, -1));
+
+        btnreset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_restart_60px.png"))); // NOI18N
+        btnreset.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 102), null));
+        btnreset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnreset.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bawah.add(btnreset, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, 90, 70));
+
+        reset.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        reset.setForeground(new java.awt.Color(0, 0, 102));
+        reset.setText("Reset");
+        bawah.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 90, -1, -1));
+
+        btnkembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_60px.png"))); // NOI18N
+        btnkembali.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 102), null));
+        btnkembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnkembali.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bawah.add(btnkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, 90, 70));
+
+        kembalii.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        kembalii.setForeground(new java.awt.Color(0, 0, 102));
+        kembalii.setText("Kembali");
+        bawah.add(kembalii, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(335, 335, 335))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel6)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(49, 49, 49))))
+                    .addComponent(atas, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bawah, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(tengah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(1, 1, 1)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(33, 33, 33))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(6, 6, 6)))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(atas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
+                .addComponent(bawah, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(125, 125, 125)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(168, Short.MAX_VALUE)))
+                    .addGap(101, 101, 101)
+                    .addComponent(tengah, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(195, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,25 +389,47 @@ public class Kasir extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel atas;
+    private javax.swing.JPanel bawah;
+    private javax.swing.JLabel bayar;
+    private javax.swing.JButton btncetak;
+    private javax.swing.JButton btnkembali;
+    private javax.swing.JButton btnreset;
+    private javax.swing.JButton btnsimpan;
+    private javax.swing.JLabel cancel;
+    private javax.swing.JLabel cetak;
+    private javax.swing.JLabel delete;
+    private javax.swing.JLabel diskon;
+    private javax.swing.JLabel grandtotal;
+    private javax.swing.JLabel idpelanggan;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel judul;
+    private javax.swing.JLabel jumlahbarang;
+    private javax.swing.JLabel kembali;
+    private javax.swing.JLabel kembalii;
+    private javax.swing.JLabel kodebarang;
+    private javax.swing.JLabel namabarang;
+    private javax.swing.JLabel namapelanggan;
+    private javax.swing.JLabel neww;
+    private javax.swing.JLabel nofaktur;
+    private javax.swing.JLabel reset;
+    private javax.swing.JLabel save;
+    private javax.swing.JLabel search;
+    private javax.swing.JLabel simpan;
+    private javax.swing.JLabel subtotal;
+    private javax.swing.JTable tabel;
+    private javax.swing.JPanel tengah;
+    private javax.swing.JTextField txtbayar;
+    private javax.swing.JTextField txtdiskon;
+    private javax.swing.JTextField txtgrandtotal1;
+    private javax.swing.JTextField txtgrandtotal2;
+    private javax.swing.JTextField txtidpelanggan;
+    private javax.swing.JTextField txtjumlahbarang;
+    private javax.swing.JTextField txtkembali;
+    private javax.swing.JTextField txtkodebarang;
+    private javax.swing.JTextField txtnamabarang;
+    private javax.swing.JTextField txtnamapelanggan;
+    private javax.swing.JTextField txtnofaktur;
+    private javax.swing.JTextField txtsubtotal;
     // End of variables declaration//GEN-END:variables
 }

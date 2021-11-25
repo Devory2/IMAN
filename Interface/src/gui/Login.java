@@ -24,24 +24,24 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        logo1 = new javax.swing.JLabel();
+        deskripsi = new javax.swing.JLabel();
+        judul = new javax.swing.JLabel();
         twitter_link = new javax.swing.JLabel();
         instagram_link = new javax.swing.JLabel();
         youtube_link = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator1 = new javax.swing.JSeparator();
+        garis1 = new javax.swing.JSeparator();
+        garis2 = new javax.swing.JSeparator();
         txtusername = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
         hide1 = new javax.swing.JLabel();
         hide2 = new javax.swing.JLabel();
-        txtpass = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        logo2 = new javax.swing.JLabel();
+        logousername = new javax.swing.JLabel();
+        logopassword = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
+        password = new javax.swing.JLabel();
         btnlogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,18 +50,18 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_management_120px_3.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 120, 120));
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_management_120px_3.png"))); // NOI18N
+        jPanel1.add(logo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 120, 120));
 
-        jLabel4.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Inventory And Management");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 210, 50));
+        deskripsi.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        deskripsi.setForeground(new java.awt.Color(255, 255, 255));
+        deskripsi.setText("Inventory And Management");
+        jPanel1.add(deskripsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 210, 50));
 
-        jLabel3.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("I  M  A  N");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 150, 50));
+        judul.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
+        judul.setForeground(new java.awt.Color(255, 255, 255));
+        judul.setText("I  M  A  N");
+        jPanel1.add(judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 150, 50));
 
         twitter_link.setForeground(new java.awt.Color(255, 255, 255));
         twitter_link.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_twitter_30px.png"))); // NOI18N
@@ -71,7 +71,7 @@ public class Login extends javax.swing.JFrame {
                 twitter_linkMouseClicked(evt);
             }
         });
-        jPanel1.add(twitter_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, 30));
+        jPanel1.add(twitter_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, 30));
 
         instagram_link.setForeground(new java.awt.Color(255, 255, 255));
         instagram_link.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_Instagram_30px_1.png"))); // NOI18N
@@ -81,7 +81,7 @@ public class Login extends javax.swing.JFrame {
                 instagram_linkMouseClicked(evt);
             }
         });
-        jPanel1.add(instagram_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, 30));
+        jPanel1.add(instagram_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, 30));
 
         youtube_link.setForeground(new java.awt.Color(255, 255, 255));
         youtube_link.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_YouTube_30px.png"))); // NOI18N
@@ -91,12 +91,12 @@ public class Login extends javax.swing.JFrame {
                 youtube_linkMouseClicked(evt);
             }
         });
-        jPanel1.add(youtube_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, 30));
+        jPanel1.add(youtube_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 230, 30));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 230, 30));
+        jPanel2.add(garis1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 230, 30));
+        jPanel2.add(garis2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 230, 30));
 
         txtusername.setBackground(new java.awt.Color(0, 0, 102));
         txtusername.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -106,6 +106,13 @@ public class Login extends javax.swing.JFrame {
         txtusername.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 230, 30));
         txtusername.getAccessibleContext().setAccessibleName("");
+
+        txtpass.setBackground(new java.awt.Color(0, 0, 102));
+        txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtpass.setForeground(new java.awt.Color(255, 255, 255));
+        txtpass.setBorder(null);
+        txtpass.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 210, 30));
 
         hide1.setForeground(new java.awt.Color(255, 255, 255));
         hide1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_eye_20px.png"))); // NOI18N
@@ -125,33 +132,26 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(hide2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, 30));
 
-        txtpass.setBackground(new java.awt.Color(0, 0, 102));
-        txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtpass.setForeground(new java.awt.Color(255, 255, 255));
-        txtpass.setBorder(null);
-        txtpass.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel2.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 210, 30));
+        logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_search_account_120px.png"))); // NOI18N
+        jPanel2.add(logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 120, 140));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_search_account_120px.png"))); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 120, 140));
+        logousername.setForeground(new java.awt.Color(255, 255, 255));
+        logousername.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_user_25px.png"))); // NOI18N
+        jPanel2.add(logousername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 30));
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_user_25px.png"))); // NOI18N
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 30));
+        logopassword.setForeground(new java.awt.Color(255, 255, 255));
+        logopassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_lock_25px.png"))); // NOI18N
+        jPanel2.add(logopassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, 30));
 
-        jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Password");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 70, 20));
+        username.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("Username");
+        jPanel2.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, 20));
 
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_lock_25px.png"))); // NOI18N
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, 30));
-
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Username");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, 20));
+        password.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setText("Password");
+        jPanel2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 70, 20));
 
         btnlogin.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
         btnlogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,7 +163,7 @@ public class Login extends javax.swing.JFrame {
                 btnloginMouseClicked(evt);
             }
         });
-        jPanel2.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+        jPanel2.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -250,24 +250,24 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnlogin;
+    private javax.swing.JLabel deskripsi;
+    private javax.swing.JSeparator garis1;
+    private javax.swing.JSeparator garis2;
     private javax.swing.JLabel hide1;
     private javax.swing.JLabel hide2;
     private javax.swing.JLabel instagram_link;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel judul;
+    private javax.swing.JLabel logo1;
+    private javax.swing.JLabel logo2;
+    private javax.swing.JLabel logopassword;
+    private javax.swing.JLabel logousername;
+    private javax.swing.JLabel password;
     private javax.swing.JLabel twitter_link;
     private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtusername;
+    private javax.swing.JLabel username;
     private javax.swing.JLabel youtube_link;
     // End of variables declaration//GEN-END:variables
 }

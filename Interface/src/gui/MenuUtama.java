@@ -124,6 +124,11 @@ public class MenuUtama extends javax.swing.JFrame {
         btnkasir.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnkasir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnkasir.setOpaque(false);
+        btnkasir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkasirActionPerformed(evt);
+            }
+        });
         Menu.add(btnkasir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 140, 120));
 
         btnlogout.setBackground(new java.awt.Color(255, 255, 255));
@@ -272,6 +277,11 @@ public class MenuUtama extends javax.swing.JFrame {
     private void date4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_date4ActionPerformed
+
+    private void btnkasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkasirActionPerformed
+        Kasir kasir = new Kasir();
+        kasir.setVisible(true);
+    }//GEN-LAST:event_btnkasirActionPerformed
 
     /**
      * @param args the command line arguments
