@@ -1,15 +1,9 @@
 package gui;
-
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -191,34 +185,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseClicked
-        System.out.println("Tombol ini telah dipencet!");
-        String username = txtusername.getText();
-        String password = txtpass.getText();
-        String sql      = "SELECT * FROM tbl_user WHERE username='"+username+"' AND password='"+password+"'";
-        
-        try {
-            PreparedStatement pst = koneksi.connect().prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-                
-            if(rs.next()){
-                System.out.println("Nyari Data Slurr!");
-                if(username.equals(rs.getString("username"))&& password.equals(rs.getString("password"))){
-                    System.out.println("Data sinkron!");
-                    this.setVisible(false);
-                    new MenuUtama().setVisible(true);
-                } 
-            } else {
-                System.out.println("Data Ngga ada");
-                    JOptionPane.showMessageDialog(rootPane, "Mohon Maaf, Username atau Password anda salah!");
-            }
-            
-            
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        
+        MenuUtama menu = new MenuUtama();
+        menu.setVisible(true);
     }//GEN-LAST:event_btnloginMouseClicked
 
     private void instagram_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instagram_linkMouseClicked

@@ -83,13 +83,8 @@ public class Kasir extends javax.swing.JFrame {
         txtgrandtotal2.setEditable(false);
         txtgrandtotal2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         txtgrandtotal2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtgrandtotal2.setText("119000");
+        txtgrandtotal2.setText("115000");
         txtgrandtotal2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
-        txtgrandtotal2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtgrandtotal2ActionPerformed(evt);
-            }
-        });
         atas.add(txtgrandtotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 310, 60));
 
         tengah.setBackground(new java.awt.Color(255, 255, 255));
@@ -357,10 +352,6 @@ public class Kasir extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtgrandtotal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgrandtotal2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtgrandtotal2ActionPerformed
 
     /**
      * @param args the command line arguments
