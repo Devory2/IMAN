@@ -1,17 +1,65 @@
 package gui;
+import control.koneksi;
 import com.mysql.jdbc.Statement;
+import control.control_login;
+import control.koneksi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
-
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+        
 public class Login extends javax.swing.JFrame {
+    control_login cl;
 
     public Login() {
         initComponents();
+        
+        cl = new control_login();
         this.hide2.setVisible(false);
         setLocationRelativeTo(this);
         setResizable(false);
+    }
+
+    public void login(){
+        try{
+            String user = txuser.getText();
+            String pass = txpass.getText();
+            
+            ResultSet rs = cl.login(user, pass);
+            if(rs.next()){
+                if(user.equalsIgnoreCase(rs.getString("username"))&&pass.equalsIgnoreCase(rs.getString("password"))){
+                    MenuUtama mn = new MenuUtama();
+                    MenuUtama.nama.setText(rs.getString("nama"));
+                    
+                    switch(rs.getInt("id_muser")){
+                        case 1:
+                            MenuUtama.level.setText("Owner");
+                        break;
+                        case 2:
+                            MenuUtama.level.setText("Admin");
+                        break;  
+                        case 3:
+                            MenuUtama.level.setText("Kasir");
+                        break;
+                    }
+                    
+                    dispose();
+                    mn.setVisible(true);
+                    JOptionPane.showMessageDialog(rootPane, "Selamat datang "+rs.getString("nama"));
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Username atau Password Salah, Silahkan coba kembalii");
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "GAGAL LOGIN");
+            }
+        }catch (SQLException ex){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "GAGAL KONEK KE DATABASE KARENA "+ex);
+        }
     }
 
     /**
@@ -33,8 +81,8 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         garis1 = new javax.swing.JSeparator();
         garis2 = new javax.swing.JSeparator();
-        txtusername = new javax.swing.JTextField();
-        txtpass = new javax.swing.JPasswordField();
+        txuser = new javax.swing.JTextField();
+        txpass = new javax.swing.JPasswordField();
         hide1 = new javax.swing.JLabel();
         hide2 = new javax.swing.JLabel();
         logo2 = new javax.swing.JLabel();
@@ -98,21 +146,21 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(garis1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 230, 30));
         jPanel2.add(garis2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 230, 30));
 
-        txtusername.setBackground(new java.awt.Color(0, 0, 102));
-        txtusername.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtusername.setForeground(new java.awt.Color(255, 255, 255));
-        txtusername.setToolTipText("");
-        txtusername.setBorder(null);
-        txtusername.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel2.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 230, 30));
-        txtusername.getAccessibleContext().setAccessibleName("");
+        txuser.setBackground(new java.awt.Color(0, 0, 102));
+        txuser.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txuser.setForeground(new java.awt.Color(255, 255, 255));
+        txuser.setToolTipText("");
+        txuser.setBorder(null);
+        txuser.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 230, 30));
+        txuser.getAccessibleContext().setAccessibleName("");
 
-        txtpass.setBackground(new java.awt.Color(0, 0, 102));
-        txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtpass.setForeground(new java.awt.Color(255, 255, 255));
-        txtpass.setBorder(null);
-        txtpass.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel2.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 210, 30));
+        txpass.setBackground(new java.awt.Color(0, 0, 102));
+        txpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txpass.setForeground(new java.awt.Color(255, 255, 255));
+        txpass.setBorder(null);
+        txpass.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 210, 30));
 
         hide1.setForeground(new java.awt.Color(255, 255, 255));
         hide1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_eye_20px.png"))); // NOI18N
@@ -163,7 +211,7 @@ public class Login extends javax.swing.JFrame {
                 btnloginMouseClicked(evt);
             }
         });
-        jPanel2.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        jPanel2.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,8 +233,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseClicked
-        MenuUtama menu = new MenuUtama();
-        menu.setVisible(true);
+        login();
     }//GEN-LAST:event_btnloginMouseClicked
 
     private void instagram_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instagram_linkMouseClicked
@@ -204,13 +251,13 @@ public class Login extends javax.swing.JFrame {
     private void hide1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hide1MousePressed
         hide2.setVisible(true);
         hide1.setVisible(false);
-        txtpass.setEchoChar((char)0);
+        txpass.setEchoChar((char)0);
     }//GEN-LAST:event_hide1MousePressed
 
     private void hide2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hide2MousePressed
         hide1.setVisible(true);
         hide2.setVisible(false);
-        txtpass.setEchoChar('*');
+        txpass.setEchoChar('*');
     }//GEN-LAST:event_hide2MousePressed
 
     /**
@@ -265,8 +312,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel logousername;
     private javax.swing.JLabel password;
     private javax.swing.JLabel twitter_link;
-    private javax.swing.JPasswordField txtpass;
-    private javax.swing.JTextField txtusername;
+    private javax.swing.JPasswordField txpass;
+    private javax.swing.JTextField txuser;
     private javax.swing.JLabel username;
     private javax.swing.JLabel youtube_link;
     // End of variables declaration//GEN-END:variables

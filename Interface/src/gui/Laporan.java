@@ -27,18 +27,90 @@ public class Laporan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        judul = new javax.swing.JLabel();
+        neww2 = new javax.swing.JLabel();
+        neww = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 102)));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 1, true));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Tanggal", "Pemasukkan", "Pengeluaran", "Keuntungan"
+            }
+        ));
+        jTable1.setRowHeight(20);
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        judul.setBackground(new java.awt.Color(0, 0, 102));
+        judul.setFont(new java.awt.Font("GeoSlab703 MdCn BT", 1, 60)); // NOI18N
+        judul.setForeground(new java.awt.Color(0, 0, 102));
+        judul.setText("Laporan Keuangan");
+        jPanel1.add(judul, java.awt.BorderLayout.PAGE_START);
+
+        neww2.setBackground(new java.awt.Color(255, 255, 255));
+        neww2.setForeground(new java.awt.Color(0, 0, 102));
+        neww2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        neww2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
+        neww2.setText("Simpan");
+        neww2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        neww2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        neww2.setOpaque(true);
+        jPanel1.add(neww2, java.awt.BorderLayout.PAGE_END);
+
+        neww.setBackground(new java.awt.Color(255, 255, 255));
+        neww.setForeground(new java.awt.Color(0, 0, 102));
+        neww.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        neww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_40px.png"))); // NOI18N
+        neww.setText("Kembali");
+        neww.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        neww.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        neww.setOpaque(true);
+        jPanel1.add(neww, java.awt.BorderLayout.LINE_END);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 810));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +151,11 @@ public class Laporan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel judul;
+    private javax.swing.JLabel neww;
+    private javax.swing.JLabel neww2;
     // End of variables declaration//GEN-END:variables
 }

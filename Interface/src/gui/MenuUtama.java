@@ -4,30 +4,38 @@
  * and open the template in the editor.
  */
 package gui;
-
+import control.koneksi;
+import control.menuut;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
+
 
 /**
  *
  * @author LENOVO
  */
 public class MenuUtama extends javax.swing.JFrame {
-    
-    public void date (){
-        Date ys = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("EEEEE, dd MM yyyy");
-        date.setText(s.format(ys)); 
-    }
+    koneksi db;
+    menuut ut;
     
     public MenuUtama() {
         initComponents();
+        db = new koneksi();
+        ut = new menuut();
         date();
         setLocationRelativeTo(this);
         setResizable(false);
+        ut.tampilcounttrx();
+        ut.tampilkeuntungan();
     }
 
     /**
@@ -41,11 +49,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
         Profil = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        level = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        nama = new javax.swing.JLabel();
         Menu = new javax.swing.JPanel();
         btnuser = new javax.swing.JButton();
         btnbarang = new javax.swing.JButton();
@@ -53,7 +61,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnlogout = new javax.swing.JButton();
         btnreport = new javax.swing.JButton();
         btnsuppliers = new javax.swing.JButton();
-        user = new javax.swing.JLabel();
+        pengguna = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         barang = new javax.swing.JLabel();
         kasir = new javax.swing.JLabel();
@@ -61,12 +69,10 @@ public class MenuUtama extends javax.swing.JFrame {
         laporan = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
         Total = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        date1 = new javax.swing.JTextField();
-        date3 = new javax.swing.JTextField();
-        date4 = new javax.swing.JTextField();
+        ttltransaksi = new javax.swing.JLabel();
+        ttlkeuntungan = new javax.swing.JLabel();
+        totaltrx = new javax.swing.JLabel();
+        totalkeuntungan = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,10 +82,10 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_NFT_User_120px.png"))); // NOI18N
         Profil.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Dubai Medium", 2, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Owner");
-        Profil.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        level.setFont(new java.awt.Font("Dubai Medium", 2, 16)); // NOI18N
+        level.setForeground(new java.awt.Color(255, 255, 255));
+        level.setText("Admin");
+        Profil.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 110, 20));
 
         jLabel12.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,10 +100,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel14.setText("I  M  A  N");
         Profil.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 150, 50));
 
-        jLabel15.setFont(new java.awt.Font("Dubai Medium", 0, 25)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Marzuki Akmal");
-        Profil.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
+        nama.setFont(new java.awt.Font("Dubai Medium", 0, 25)); // NOI18N
+        nama.setForeground(new java.awt.Color(255, 255, 255));
+        nama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nama.setText("Asmodheous");
+        Profil.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 340, 50));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,6 +115,11 @@ public class MenuUtama extends javax.swing.JFrame {
         btnuser.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnuser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnuser.setOpaque(false);
+        btnuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnuserActionPerformed(evt);
+            }
+        });
         Menu.add(btnuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 140, 120));
 
         btnbarang.setBackground(new java.awt.Color(255, 255, 255));
@@ -116,6 +128,11 @@ public class MenuUtama extends javax.swing.JFrame {
         btnbarang.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnbarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnbarang.setOpaque(false);
+        btnbarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbarangActionPerformed(evt);
+            }
+        });
         Menu.add(btnbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 140, 120));
 
         btnkasir.setBackground(new java.awt.Color(255, 255, 255));
@@ -137,6 +154,11 @@ public class MenuUtama extends javax.swing.JFrame {
         btnlogout.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnlogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnlogout.setOpaque(false);
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
         Menu.add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 140, 120));
 
         btnreport.setBackground(new java.awt.Color(255, 255, 255));
@@ -145,6 +167,11 @@ public class MenuUtama extends javax.swing.JFrame {
         btnreport.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnreport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnreport.setOpaque(false);
+        btnreport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreportActionPerformed(evt);
+            }
+        });
         Menu.add(btnreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 140, 120));
 
         btnsuppliers.setBackground(new java.awt.Color(255, 255, 255));
@@ -153,11 +180,16 @@ public class MenuUtama extends javax.swing.JFrame {
         btnsuppliers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(153, 204, 255)));
         btnsuppliers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnsuppliers.setOpaque(false);
+        btnsuppliers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsuppliersActionPerformed(evt);
+            }
+        });
         Menu.add(btnsuppliers, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 140, 120));
 
-        user.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        user.setText("User");
-        Menu.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, -1, -1));
+        pengguna.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
+        pengguna.setText("Pengguna");
+        Menu.add(pengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
 
         logout.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         logout.setText("Logout");
@@ -187,101 +219,86 @@ public class MenuUtama extends javax.swing.JFrame {
         Total.setBackground(new java.awt.Color(0, 0, 102));
         Total.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Pelanggan :");
-        Total.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, -1, -1));
+        ttltransaksi.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        ttltransaksi.setForeground(new java.awt.Color(255, 255, 255));
+        ttltransaksi.setText("Total Transaksi :");
+        Total.add(ttltransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Total Transaksi :");
-        Total.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        ttlkeuntungan.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        ttlkeuntungan.setForeground(new java.awt.Color(255, 255, 255));
+        ttlkeuntungan.setText("Total Keuntungan :");
+        Total.add(ttlkeuntungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Jenis Barang :");
-        Total.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, -1, -1));
+        totaltrx.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
+        totaltrx.setForeground(new java.awt.Color(255, 255, 255));
+        totaltrx.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totaltrx.setText("0");
+        totaltrx.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Total.add(totaltrx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 90));
 
-        date1.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
-        date1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        date1.setText("15");
-        date1.setToolTipText("");
-        date1.setBorder(null);
-        date1.setCaretColor(new java.awt.Color(255, 255, 255));
-        date1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        date1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                date1ActionPerformed(evt);
-            }
-        });
-        Total.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 230, 90));
-
-        date3.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
-        date3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        date3.setText("43");
-        date3.setToolTipText("");
-        date3.setBorder(null);
-        date3.setCaretColor(new java.awt.Color(255, 255, 255));
-        date3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        date3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                date3ActionPerformed(evt);
-            }
-        });
-        Total.add(date3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 90));
-
-        date4.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
-        date4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        date4.setText("23");
-        date4.setToolTipText("");
-        date4.setBorder(null);
-        date4.setCaretColor(new java.awt.Color(255, 255, 255));
-        date4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        date4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                date4ActionPerformed(evt);
-            }
-        });
-        Total.add(date4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 230, 90));
+        totalkeuntungan.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
+        totalkeuntungan.setForeground(new java.awt.Color(255, 255, 255));
+        totalkeuntungan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalkeuntungan.setText("0");
+        totalkeuntungan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Total.add(totalkeuntungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 290, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Profil, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(Profil, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                     .addComponent(Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Profil, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
+                .addComponent(Total, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void date1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_date1ActionPerformed
-
-    private void date3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_date3ActionPerformed
-
-    private void date4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_date4ActionPerformed
-
     private void btnkasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkasirActionPerformed
-        Kasir kasir = new Kasir();
-        kasir.setVisible(true);
+        Kasir menu = new Kasir();
+        menu.setVisible(true);
     }//GEN-LAST:event_btnkasirActionPerformed
+
+    private void btnbarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbarangActionPerformed
+        Barang menu = new Barang();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnbarangActionPerformed
+
+    private void btnuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuserActionPerformed
+        Users menu = new Users();
+        menu.setVisible(true);
+                
+    }//GEN-LAST:event_btnuserActionPerformed
+
+    private void btnreportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportActionPerformed
+        Laporan menu = new Laporan();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnreportActionPerformed
+
+    private void btnsuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuppliersActionPerformed
+       Suppliers menu = new Suppliers();
+       menu.setVisible(true);
+    }//GEN-LAST:event_btnsuppliersActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+       String ObjButton[]= {"YES","NO"};
+       int pilihan = JOptionPane.showOptionDialog(null, "Apakah Anda yakin ingin keluar ?", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+               null, ObjButton, ObjButton[1]);
+       if(pilihan == 0){
+           System.exit(0);
+       }    
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +334,12 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
     }
+    
+        public void date (){
+        Date dt = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("EEEEE, dd MM yyyy");
+        date.setText(s.format(dt)); 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Menu;
@@ -330,22 +353,20 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnsuppliers;
     private javax.swing.JButton btnuser;
     private javax.swing.JLabel date;
-    private javax.swing.JTextField date1;
-    private javax.swing.JTextField date3;
-    private javax.swing.JTextField date4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel kasir;
     private javax.swing.JLabel laporan;
+    public static javax.swing.JLabel level;
     private javax.swing.JLabel logout;
+    public static javax.swing.JLabel nama;
+    private javax.swing.JLabel pengguna;
     private javax.swing.JLabel suppliers;
-    private javax.swing.JLabel user;
+    public static javax.swing.JLabel totalkeuntungan;
+    public static javax.swing.JLabel totaltrx;
+    private javax.swing.JLabel ttlkeuntungan;
+    private javax.swing.JLabel ttltransaksi;
     // End of variables declaration//GEN-END:variables
 }
