@@ -5,6 +5,11 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
+import control.koneksi;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 /**
  *
  * @author LENOVO
@@ -18,6 +23,7 @@ public class Suppliers extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
+//        super.setKoneksi();
     }
 
     /**
@@ -36,10 +42,10 @@ public class Suppliers extends javax.swing.JFrame {
         nama = new javax.swing.JLabel();
         txtnama = new javax.swing.JTextField();
         stok = new javax.swing.JLabel();
-        txtstok = new javax.swing.JTextField();
+        txtalamat = new javax.swing.JTextField();
         harga = new javax.swing.JLabel();
-        txtharga = new javax.swing.JTextField();
-        neww1 = new javax.swing.JLabel();
+        txtnomor = new javax.swing.JTextField();
+        btnbaru = new javax.swing.JLabel();
         kanan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         databarang = new javax.swing.JTable();
@@ -73,6 +79,11 @@ public class Suppliers extends javax.swing.JFrame {
                 txtkodeActionPerformed(evt);
             }
         });
+        txtkode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtkodeKeyTyped(evt);
+            }
+        });
         kiri.add(txtkode, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 390, 30));
 
         nama.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -96,37 +107,47 @@ public class Suppliers extends javax.swing.JFrame {
         stok.setText("Alamat Supplier");
         kiri.add(stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
-        txtstok.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtstok.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtstok.setText("Sidokare Gg.2 No.20, Sidokare, Sidoarjo");
-        txtstok.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
-        kiri.add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 390, 30));
+        txtalamat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtalamat.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtalamat.setText("Sidokare Gg.2 No.20, Sidokare, Sidoarjo");
+        txtalamat.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtalamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtalamatActionPerformed(evt);
+            }
+        });
+        kiri.add(txtalamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 390, 30));
 
         harga.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         harga.setForeground(new java.awt.Color(0, 0, 102));
-        harga.setText("Nomer Telpon Supplier");
+        harga.setText("Nomor Telepon Supplier");
         kiri.add(harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
-        txtharga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtharga.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtharga.setText("081212136344");
-        txtharga.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
-        txtharga.addActionListener(new java.awt.event.ActionListener() {
+        txtnomor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtnomor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtnomor.setText("081212136344");
+        txtnomor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtnomor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthargaActionPerformed(evt);
+                txtnomorActionPerformed(evt);
             }
         });
-        kiri.add(txtharga, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 390, 30));
+        kiri.add(txtnomor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 390, 30));
 
-        neww1.setBackground(new java.awt.Color(255, 255, 255));
-        neww1.setForeground(new java.awt.Color(0, 0, 102));
-        neww1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
-        neww1.setText("Baru");
-        neww1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww1.setOpaque(true);
-        kiri.add(neww1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 110, 50));
+        btnbaru.setBackground(new java.awt.Color(255, 255, 255));
+        btnbaru.setForeground(new java.awt.Color(0, 0, 102));
+        btnbaru.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnbaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
+        btnbaru.setText("Baru");
+        btnbaru.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnbaru.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnbaru.setOpaque(true);
+        btnbaru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbaruMouseClicked(evt);
+            }
+        });
+        kiri.add(btnbaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 110, 50));
 
         getContentPane().add(kiri, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 580));
 
@@ -231,9 +252,34 @@ public class Suppliers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnamaActionPerformed
 
-    private void txthargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthargaActionPerformed
+    private void txtnomorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txthargaActionPerformed
+    }//GEN-LAST:event_txtnomorActionPerformed
+
+    private void txtkodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkodeKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtkodeKeyTyped
+
+    private void btnbaruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbaruMouseClicked
+        // TODO add your handling code here:
+        String nama     = txtnama.getText();
+        String alamat   = txtalamat.getText();
+        String nomor    = txtnomor.getText();
+        String sql      = "INSERT INTO tbl_MDistributor VALUES ('','"+nama+"','"+alamat+"','"+nomor+"')";
+        
+        
+        
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+        
+    }//GEN-LAST:event_btnbaruMouseClicked
+
+    private void txtalamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtalamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtalamatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,6 +332,7 @@ public class Suppliers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnbaru;
     private javax.swing.JTable databarang;
     private javax.swing.JLabel harga;
     private javax.swing.JScrollPane jScrollPane1;
@@ -295,13 +342,12 @@ public class Suppliers extends javax.swing.JFrame {
     private javax.swing.JLabel kode;
     private javax.swing.JLabel nama;
     private javax.swing.JLabel neww;
-    private javax.swing.JLabel neww1;
     private javax.swing.JLabel neww2;
     private javax.swing.JLabel neww3;
     private javax.swing.JLabel stok;
-    private javax.swing.JTextField txtharga;
+    private javax.swing.JTextField txtalamat;
     private javax.swing.JTextField txtkode;
     private javax.swing.JTextField txtnama;
-    private javax.swing.JTextField txtstok;
+    private javax.swing.JTextField txtnomor;
     // End of variables declaration//GEN-END:variables
 }

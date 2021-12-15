@@ -33,23 +33,30 @@ public class Login extends javax.swing.JFrame {
             if(rs.next()){
                 if(user.equalsIgnoreCase(rs.getString("username"))&&pass.equalsIgnoreCase(rs.getString("password"))){
                     MenuUtama mn = new MenuUtama();
+                    Kasir k = new Kasir();
                     MenuUtama.nama.setText(rs.getString("nama"));
                     
                     switch(rs.getInt("id_muser")){
                         case 1:
                             MenuUtama.level.setText("Owner");
+                            
+                            dispose();
+                            mn.setVisible(true);
+                            JOptionPane.showMessageDialog(rootPane, "Selamat datang "+rs.getString("nama"));
                         break;
                         case 2:
                             MenuUtama.level.setText("Admin");
+                            
+                            dispose();
+                            mn.setVisible(true);
+                            JOptionPane.showMessageDialog(rootPane, "Selamat datang "+rs.getString("nama"));
                         break;  
                         case 3:
                             MenuUtama.level.setText("Kasir");
+                            dispose();
+                            k.setVisible(true);
                         break;
                     }
-                    
-                    dispose();
-                    mn.setVisible(true);
-                    JOptionPane.showMessageDialog(rootPane, "Selamat datang "+rs.getString("nama"));
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Username atau Password Salah, Silahkan coba kembalii");
                 }
