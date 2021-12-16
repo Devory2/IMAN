@@ -20,26 +20,26 @@ public class menuut extends koneksi{
     }
     
     public void tampilcounttrx(){
-//        try{
-//            String sql = "SELECT COUNT (id_transaksi) FROM tbl_transaksi";
-//            rs = st.executeQuery(sql);
-//            while(rs.next()){
-//                MenuUtama.totaltrx.setText(rs.getString(1));
-//            }
-//        } catch (SQLException ex){
-//            Logger.getLogger(menuut.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try{
+           String sql = "SELECT COUNT(id_transaksi) FROM `tbl_transaksi`";
+            rs = st.executeQuery(sql);
+           while(rs.next()){
+               MenuUtama.totaltrx.setText(rs.getString(1));
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(menuut.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     public void tampilkeuntungan(){
-//        try{
-//            String sql = "SELECT COUNT (laba) FROM tbl_keuangan";
-//            rs = st.executeQuery(sql);
-//            while(rs.next()){
-//                MenuUtama.totalkeuntungan.setText(rs.getString(1));
-//            }
-//        } catch (SQLException ex){
-//            Logger.getLogger(menuut.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try{
+            String sql = "SELECT SUM(laba) FROM tbl_keuangan";
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                MenuUtama.totalkeuntungan.setText(rs.getString(1));
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(menuut.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
