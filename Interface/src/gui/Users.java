@@ -241,6 +241,11 @@ control_user ur;
         btnback.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
         btnback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnback.setOpaque(true);
+        btnback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbackMouseClicked(evt);
+            }
+        });
         kanan.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 110, 50));
 
         btnsimpan.setBackground(new java.awt.Color(255, 255, 255));
@@ -368,6 +373,11 @@ boolean edit = false;
         btnhapus.setEnabled(true);
         btnback.setEnabled(true);
     }//GEN-LAST:event_tabelMouseClicked
+
+    private void btnbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbackMouseClicked
+        this.setVisible(false);
+        new MenuUtama().setVisible(true);
+    }//GEN-LAST:event_btnbackMouseClicked
 
     /**
      * @param args the command line arguments

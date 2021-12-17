@@ -5,17 +5,21 @@
  */
 package gui;
 
+import control.control_supplier;
+import control.Masterbarang;
+import control.menuut;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import control.koneksi;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 /**
  *
  * @author LENOVO
  */
 public class Suppliers extends javax.swing.JFrame {
-
+menuut ut;
+control_supplier su;
     /**
      * Creates new form Barang
      */
@@ -23,7 +27,21 @@ public class Suppliers extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
-//        super.setKoneksi();
+        ut = new menuut();
+        su = new control_supplier();
+        tampil();
+    }
+    
+    public void tampil(){
+        tabel.setModel(su.model);
+        su.tampil();
+    }
+    
+    public void clear(){
+        txtid.setText(null);
+        txtnama.setText(null);
+        txtalamat.setText(null);
+        txtno.setText(null);
     }
 
     /**
@@ -38,20 +56,20 @@ public class Suppliers extends javax.swing.JFrame {
         kiri = new javax.swing.JPanel();
         judul = new javax.swing.JLabel();
         kode = new javax.swing.JLabel();
-        txtkode = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         nama = new javax.swing.JLabel();
         txtnama = new javax.swing.JTextField();
         stok = new javax.swing.JLabel();
         txtalamat = new javax.swing.JTextField();
         harga = new javax.swing.JLabel();
-        txtnomor = new javax.swing.JTextField();
+        txtno = new javax.swing.JTextField();
         btnbaru = new javax.swing.JLabel();
         kanan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        databarang = new javax.swing.JTable();
-        neww = new javax.swing.JLabel();
-        neww2 = new javax.swing.JLabel();
-        neww3 = new javax.swing.JLabel();
+        tabel = new javax.swing.JTable();
+        btnback = new javax.swing.JLabel();
+        btnsimpan = new javax.swing.JLabel();
+        btnhapus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,21 +88,20 @@ public class Suppliers extends javax.swing.JFrame {
         kode.setText("ID Supplier");
         kiri.add(kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
-        txtkode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtkode.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtkode.setText("0122");
-        txtkode.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
-        txtkode.addActionListener(new java.awt.event.ActionListener() {
+        txtid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtid.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtid.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtkodeActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
-        txtkode.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtkodeKeyTyped(evt);
+                txtidKeyTyped(evt);
             }
         });
-        kiri.add(txtkode, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 390, 30));
+        kiri.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 390, 30));
 
         nama.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         nama.setForeground(new java.awt.Color(0, 0, 102));
@@ -93,7 +110,6 @@ public class Suppliers extends javax.swing.JFrame {
 
         txtnama.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtnama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtnama.setText("Bahari Samsudin");
         txtnama.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
         txtnama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +125,6 @@ public class Suppliers extends javax.swing.JFrame {
 
         txtalamat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtalamat.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtalamat.setText("Sidokare Gg.2 No.20, Sidokare, Sidoarjo");
         txtalamat.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
         txtalamat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,16 +138,15 @@ public class Suppliers extends javax.swing.JFrame {
         harga.setText("Nomor Telepon Supplier");
         kiri.add(harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
-        txtnomor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtnomor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtnomor.setText("081212136344");
-        txtnomor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
-        txtnomor.addActionListener(new java.awt.event.ActionListener() {
+        txtno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtno.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnomorActionPerformed(evt);
+                txtnoActionPerformed(evt);
             }
         });
-        kiri.add(txtnomor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 390, 30));
+        kiri.add(txtno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 390, 30));
 
         btnbaru.setBackground(new java.awt.Color(255, 255, 255));
         btnbaru.setForeground(new java.awt.Color(0, 0, 102));
@@ -154,10 +168,10 @@ public class Suppliers extends javax.swing.JFrame {
         kanan.setBackground(new java.awt.Color(153, 204, 255));
         kanan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        databarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)));
-        databarang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        databarang.setForeground(new java.awt.Color(0, 0, 102));
-        databarang.setModel(new javax.swing.table.DefaultTableModel(
+        tabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)));
+        tabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tabel.setForeground(new java.awt.Color(0, 0, 102));
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -202,84 +216,173 @@ public class Suppliers extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        databarang.setGridColor(new java.awt.Color(153, 204, 255));
-        databarang.setRowHeight(19);
-        databarang.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(databarang);
+        tabel.setGridColor(new java.awt.Color(153, 204, 255));
+        tabel.setRowHeight(19);
+        tabel.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabel);
 
         kanan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 480));
 
-        neww.setBackground(new java.awt.Color(255, 255, 255));
-        neww.setForeground(new java.awt.Color(0, 0, 102));
-        neww.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_40px.png"))); // NOI18N
-        neww.setText("Kembali");
-        neww.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww.setOpaque(true);
-        kanan.add(neww, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 110, 50));
+        btnback.setBackground(new java.awt.Color(255, 255, 255));
+        btnback.setForeground(new java.awt.Color(0, 0, 102));
+        btnback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_40px.png"))); // NOI18N
+        btnback.setText("Kembali");
+        btnback.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnback.setOpaque(true);
+        btnback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbackMouseClicked(evt);
+            }
+        });
+        kanan.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 110, 50));
 
-        neww2.setBackground(new java.awt.Color(255, 255, 255));
-        neww2.setForeground(new java.awt.Color(0, 0, 102));
-        neww2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
-        neww2.setText("Simpan");
-        neww2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww2.setOpaque(true);
-        kanan.add(neww2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 110, 50));
+        btnsimpan.setBackground(new java.awt.Color(255, 255, 255));
+        btnsimpan.setForeground(new java.awt.Color(0, 0, 102));
+        btnsimpan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
+        btnsimpan.setText("Simpan");
+        btnsimpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnsimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnsimpan.setOpaque(true);
+        btnsimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsimpanMouseClicked(evt);
+            }
+        });
+        kanan.add(btnsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 110, 50));
 
-        neww3.setBackground(new java.awt.Color(255, 255, 255));
-        neww3.setForeground(new java.awt.Color(0, 0, 102));
-        neww3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_waste_40px.png"))); // NOI18N
-        neww3.setText("Hapus");
-        neww3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww3.setOpaque(true);
-        kanan.add(neww3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 110, 50));
+        btnhapus.setBackground(new java.awt.Color(255, 255, 255));
+        btnhapus.setForeground(new java.awt.Color(0, 0, 102));
+        btnhapus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_waste_40px.png"))); // NOI18N
+        btnhapus.setText("Hapus");
+        btnhapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnhapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnhapus.setOpaque(true);
+        btnhapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnhapusMouseClicked(evt);
+            }
+        });
+        kanan.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 110, 50));
 
         getContentPane().add(kanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 920, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtkodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkodeActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtkodeActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
     private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnamaActionPerformed
 
-    private void txtnomorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomorActionPerformed
+    private void txtnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnomorActionPerformed
+    }//GEN-LAST:event_txtnoActionPerformed
 
-    private void txtkodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkodeKeyTyped
+    private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtkodeKeyTyped
+    }//GEN-LAST:event_txtidKeyTyped
 
     private void btnbaruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbaruMouseClicked
-        // TODO add your handling code here:
-        String nama     = txtnama.getText();
-        String alamat   = txtalamat.getText();
-        String nomor    = txtnomor.getText();
-        String sql      = "INSERT INTO tbl_MDistributor VALUES ('','"+nama+"','"+alamat+"','"+nomor+"')";
-        
-        
-        
-        try {
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
-        
+        txtid.setEditable(true);
+        txtnama.setEditable(true);
+        txtalamat.setEditable(true);
+        txtno.setEditable(true);
+        btnsimpan.setEnabled(true);
+        btnback.setEnabled(true);
+        btnbaru.setEnabled(false);
+        txtid.requestFocus();
     }//GEN-LAST:event_btnbaruMouseClicked
 
     private void txtalamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtalamatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtalamatActionPerformed
+
+    private void btnhapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhapusMouseClicked
+        String id = txtid.getText();
+        try{
+            su.hapus(id);
+            JOptionPane.showMessageDialog(rootPane, "Data Berhasil Dihapus");
+            tampil();
+            clear();
+        }catch (SQLException ex){
+            Logger.getLogger(Suppliers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnhapusMouseClicked
+boolean edit = false;
+    private void btnsimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsimpanMouseClicked
+                if(edit==true){
+            String id = txtid.getText();
+            String nama = txtnama.getText();
+            String alamat = txtalamat.getText();
+            String no = txtno.getText();
+            
+            try{
+                su.edit(id, nama, alamat, no);
+                JOptionPane.showMessageDialog(rootPane, "Data Berhasil Diupdate");
+                tampil();
+                clear();
+                txtalamat.setEditable(false);
+                txtnama.setEditable(false);
+                txtno.setEditable(false);
+                btnsimpan.setEnabled(false);
+                btnback.setEnabled(true);
+                btnbaru.setEnabled(true);
+            }catch (SQLException ex){
+                Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+                     String id = txtid.getText();
+            String nama = txtnama.getText();
+            String alamat = txtalamat.getText();
+            String no = txtno.getText();
+            try{
+                su.simpan(id, nama, alamat, no);
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil disimpan");
+                tampil();
+                
+                clear();
+                btnsimpan.setEnabled(false);
+                btnback.setEnabled(true);
+                btnbaru.setEnabled(true);
+                txtnama.setEditable(false);
+                txtalamat.setEditable(false);
+                txtno.setEditable(false);
+                btnsimpan.setEnabled(false);
+                btnbaru.setEnabled(true);
+                btnback.setEnabled(true);
+            }catch(SQLException ex){
+                Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
+    }//GEN-LAST:event_btnsimpanMouseClicked
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        int row = tabel.getSelectedRow();
+        txtid.setText(tabel.getValueAt(row, 0).toString());
+        txtnama.setText(tabel.getValueAt(row, 1).toString());
+        txtalamat.setText(tabel.getValueAt(row, 2).toString());
+        txtno.setText(tabel.getValueAt(row, 3).toString());
+        btnsimpan.setEnabled(true);
+        btnhapus.setEnabled(true);
+        btnback.setEnabled(true);
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void btnbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbackMouseClicked
+        this.setVisible(false);
+        new MenuUtama().setVisible(true);
+    }//GEN-LAST:event_btnbackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -332,8 +435,10 @@ public class Suppliers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnback;
     private javax.swing.JLabel btnbaru;
-    private javax.swing.JTable databarang;
+    private javax.swing.JLabel btnhapus;
+    private javax.swing.JLabel btnsimpan;
     private javax.swing.JLabel harga;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel judul;
@@ -341,13 +446,11 @@ public class Suppliers extends javax.swing.JFrame {
     private javax.swing.JPanel kiri;
     private javax.swing.JLabel kode;
     private javax.swing.JLabel nama;
-    private javax.swing.JLabel neww;
-    private javax.swing.JLabel neww2;
-    private javax.swing.JLabel neww3;
     private javax.swing.JLabel stok;
+    private javax.swing.JTable tabel;
     private javax.swing.JTextField txtalamat;
-    private javax.swing.JTextField txtkode;
+    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnama;
-    private javax.swing.JTextField txtnomor;
+    private javax.swing.JTextField txtno;
     // End of variables declaration//GEN-END:variables
 }
