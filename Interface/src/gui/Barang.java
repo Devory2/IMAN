@@ -5,12 +5,20 @@
  */
 package gui;
 
+import control.Masterbarang;
+import control.menuut;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author LENOVO
  */
 public class Barang extends javax.swing.JFrame {
-
+Masterbarang mb;
+menuut ut;
     /**
      * Creates new form Barang
      */
@@ -18,8 +26,25 @@ public class Barang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
+        ut = new menuut();
+        mb = new Masterbarang();
+        tampil();
+    }
+    
+    public void tampil(){
+        tabel.setModel(mb.modelbarang);
+        mb.modelbarang.setRowCount(0);
+        mb.tampil();
     }
 
+    
+    public void clear(){
+        txtkode.setText(null);
+        txtnama.setText(null);
+        txtstok.setText(null);
+        txtharga.setText(null);
+        tabel.clearSelection();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,13 +64,13 @@ public class Barang extends javax.swing.JFrame {
         txtstok = new javax.swing.JTextField();
         harga = new javax.swing.JLabel();
         txtharga = new javax.swing.JTextField();
-        neww1 = new javax.swing.JLabel();
+        btnnew = new javax.swing.JLabel();
         kanan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        databarang = new javax.swing.JTable();
-        neww = new javax.swing.JLabel();
-        neww2 = new javax.swing.JLabel();
-        neww3 = new javax.swing.JLabel();
+        tabel = new javax.swing.JTable();
+        btnback = new javax.swing.JLabel();
+        btnsimpan = new javax.swing.JLabel();
+        btnhapus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,11 +91,15 @@ public class Barang extends javax.swing.JFrame {
 
         txtkode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtkode.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtkode.setText("ES021");
         txtkode.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
         txtkode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtkodeActionPerformed(evt);
+            }
+        });
+        txtkode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtkodeKeyTyped(evt);
             }
         });
         kiri.add(txtkode, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 390, 30));
@@ -82,11 +111,15 @@ public class Barang extends javax.swing.JFrame {
 
         txtnama.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtnama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtnama.setText("Milo");
         txtnama.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
         txtnama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnamaActionPerformed(evt);
+            }
+        });
+        txtnama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnamaKeyTyped(evt);
             }
         });
         kiri.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 390, 30));
@@ -98,8 +131,12 @@ public class Barang extends javax.swing.JFrame {
 
         txtstok.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtstok.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtstok.setText("12");
         txtstok.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtstokKeyTyped(evt);
+            }
+        });
         kiri.add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 390, 30));
 
         harga.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -109,29 +146,38 @@ public class Barang extends javax.swing.JFrame {
 
         txtharga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtharga.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtharga.setText("3000");
         txtharga.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 0, 102)));
+        txtharga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txthargaKeyTyped(evt);
+            }
+        });
         kiri.add(txtharga, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 390, 30));
 
-        neww1.setBackground(new java.awt.Color(255, 255, 255));
-        neww1.setForeground(new java.awt.Color(0, 0, 102));
-        neww1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
-        neww1.setText("Baru");
-        neww1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww1.setOpaque(true);
-        kiri.add(neww1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 110, 50));
+        btnnew.setBackground(new java.awt.Color(255, 255, 255));
+        btnnew.setForeground(new java.awt.Color(0, 0, 102));
+        btnnew.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnnew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_new_copy_40px.png"))); // NOI18N
+        btnnew.setText("Baru");
+        btnnew.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnnew.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnew.setOpaque(true);
+        btnnew.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnnewMouseClicked(evt);
+            }
+        });
+        kiri.add(btnnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 110, 50));
 
         getContentPane().add(kiri, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 580));
 
         kanan.setBackground(new java.awt.Color(153, 204, 255));
         kanan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        databarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)));
-        databarang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        databarang.setForeground(new java.awt.Color(0, 0, 102));
-        databarang.setModel(new javax.swing.table.DefaultTableModel(
+        tabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)));
+        tabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tabel.setForeground(new java.awt.Color(0, 0, 102));
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -176,42 +222,62 @@ public class Barang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        databarang.setGridColor(new java.awt.Color(153, 204, 255));
-        databarang.setRowHeight(19);
-        databarang.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(databarang);
+        tabel.setGridColor(new java.awt.Color(153, 204, 255));
+        tabel.setRowHeight(19);
+        tabel.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabel);
 
         kanan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 480));
 
-        neww.setBackground(new java.awt.Color(255, 255, 255));
-        neww.setForeground(new java.awt.Color(0, 0, 102));
-        neww.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_40px.png"))); // NOI18N
-        neww.setText("Kembali");
-        neww.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww.setOpaque(true);
-        kanan.add(neww, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 110, 50));
+        btnback.setBackground(new java.awt.Color(255, 255, 255));
+        btnback.setForeground(new java.awt.Color(0, 0, 102));
+        btnback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_back_40px.png"))); // NOI18N
+        btnback.setText("Kembali");
+        btnback.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnback.setOpaque(true);
+        btnback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbackMouseClicked(evt);
+            }
+        });
+        kanan.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 110, 50));
 
-        neww2.setBackground(new java.awt.Color(255, 255, 255));
-        neww2.setForeground(new java.awt.Color(0, 0, 102));
-        neww2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
-        neww2.setText("Simpan");
-        neww2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww2.setOpaque(true);
-        kanan.add(neww2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 110, 50));
+        btnsimpan.setBackground(new java.awt.Color(255, 255, 255));
+        btnsimpan.setForeground(new java.awt.Color(0, 0, 102));
+        btnsimpan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_save_40px.png"))); // NOI18N
+        btnsimpan.setText("Simpan");
+        btnsimpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnsimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnsimpan.setOpaque(true);
+        btnsimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsimpanMouseClicked(evt);
+            }
+        });
+        kanan.add(btnsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 110, 50));
 
-        neww3.setBackground(new java.awt.Color(255, 255, 255));
-        neww3.setForeground(new java.awt.Color(0, 0, 102));
-        neww3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neww3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_waste_40px.png"))); // NOI18N
-        neww3.setText("Hapus");
-        neww3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        neww3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        neww3.setOpaque(true);
-        kanan.add(neww3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 110, 50));
+        btnhapus.setBackground(new java.awt.Color(255, 255, 255));
+        btnhapus.setForeground(new java.awt.Color(0, 0, 102));
+        btnhapus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_waste_40px.png"))); // NOI18N
+        btnhapus.setText("Hapus");
+        btnhapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        btnhapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnhapus.setOpaque(true);
+        btnhapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnhapusMouseClicked(evt);
+            }
+        });
+        kanan.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 110, 50));
 
         getContentPane().add(kanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 920, 580));
 
@@ -225,6 +291,115 @@ public class Barang extends javax.swing.JFrame {
     private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnamaActionPerformed
+
+    private void btnhapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhapusMouseClicked
+        String kode = txtkode.getText();
+        try{
+            mb.hapus(kode, kode);
+            JOptionPane.showMessageDialog(rootPane, "Data Berhasil Dihapus");
+            
+            tampil();
+            clear();
+            
+        }catch (SQLException ex){
+            Logger.getLogger(Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnhapusMouseClicked
+boolean edit = false;
+    private void btnsimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsimpanMouseClicked
+        if(edit==true){
+            String kode = txtkode.getText();
+            String nama = txtnama.getText();
+            int stok = Integer.parseInt(txtstok.getText());
+            int harga = Integer.parseInt(txtharga.getText());
+            try{
+                    mb.edit(kode, nama, stok, harga);
+                    JOptionPane.showMessageDialog(rootPane, "Data Berhasil Diupdate");
+                    tampil();
+                    clear();
+                    txtkode.setEditable(false);
+                    txtnama.setEditable(false);
+                    txtstok.setEditable(false);
+                    txtharga.setEditable(false);
+                    btnsimpan.setEnabled(false);
+                    btnnew.setEnabled(true);
+                    btnback.setEnabled(true);
+            }catch (SQLException ex){
+                Logger.getLogger(Barang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            String kode = txtkode.getText();
+            String nama = txtnama.getText();
+            int stok = Integer.parseInt(txtstok.getText());
+            int harga = Integer.parseInt(txtharga.getText());
+            try{
+                mb.simpan(kode, kode, nama, harga, stok);
+                JOptionPane.showMessageDialog(rootPane, "Data Berhasil Disimpan");
+                tampil();
+                clear();
+                
+                txtkode.setEditable(false);
+                txtstok.setEditable(false);
+                txtharga.setEditable(false);
+                btnsimpan.setEnabled(false);
+                btnback.setEnabled(true);
+                btnnew.setEnabled(true);
+            }catch (SQLException ex){
+                Logger.getLogger(Barang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnsimpanMouseClicked
+
+    private void btnnewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnnewMouseClicked
+        txtkode.setEditable(true);
+        txtnama.setEditable(true);
+        txtstok.setEditable(true);
+        txtharga.setEditable(true);
+        btnsimpan.setEnabled(true);
+        btnnew.setEnabled(true);
+        btnback.setEnabled(true);
+        txtkode.requestFocus();
+    }//GEN-LAST:event_btnnewMouseClicked
+
+    private void btnbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbackMouseClicked
+        this.setVisible(false);
+        new MenuUtama().setVisible(true);
+    }//GEN-LAST:event_btnbackMouseClicked
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        int row = tabel.getSelectedRow();
+        txtkode.setText(tabel.getValueAt(row, 0).toString());
+        txtnama.setText(tabel.getValueAt(row, 1).toString());
+        txtstok.setText(tabel.getValueAt(row, 2).toString());
+        txtharga.setText(tabel.getValueAt(row, 3).toString());
+        btnsimpan.setEnabled(true);
+        btnback.setEnabled(true);
+        btnhapus.setEnabled(true);
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void txtkodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkodeKeyTyped
+        if(txtkode.getText().length()==30){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtkodeKeyTyped
+
+    private void txtnamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnamaKeyTyped
+        if(txtnama.getText().length()==50){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnamaKeyTyped
+
+    private void txtstokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyTyped
+        if(txtstok.getText().length()==6){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtstokKeyTyped
+
+    private void txthargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyTyped
+        if(txtharga.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txthargaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -262,7 +437,10 @@ public class Barang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable databarang;
+    private javax.swing.JLabel btnback;
+    private javax.swing.JLabel btnhapus;
+    private javax.swing.JLabel btnnew;
+    private javax.swing.JLabel btnsimpan;
     private javax.swing.JLabel harga;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel judul;
@@ -270,11 +448,8 @@ public class Barang extends javax.swing.JFrame {
     private javax.swing.JPanel kiri;
     private javax.swing.JLabel kode;
     private javax.swing.JLabel nama;
-    private javax.swing.JLabel neww;
-    private javax.swing.JLabel neww1;
-    private javax.swing.JLabel neww2;
-    private javax.swing.JLabel neww3;
     private javax.swing.JLabel stok;
+    private javax.swing.JTable tabel;
     private javax.swing.JTextField txtharga;
     private javax.swing.JTextField txtkode;
     private javax.swing.JTextField txtnama;
